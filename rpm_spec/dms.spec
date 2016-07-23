@@ -16,6 +16,8 @@ Group:		System Environment/Daemons
 License:	GPLv2
 URL:		https://www.qubes-os.org/
 
+BuildRequires:  systemd
+
 %description
 A simple Qubes RPC endpoint which implements a dead man's switch by responding to
 triggers by locking the screen, erasing disk crypto keys, wiping main memory, and
@@ -23,6 +25,7 @@ rebooting.
 
 %package timeout
 Summary:    Lock screen timeout dead man's switch
+BuildRequires:  systemd
 
 %description timeout
 A simple dead man's switch implemented with a lock screen timeout: if the system lock
@@ -30,6 +33,8 @@ screen is active longer than a certain duration, the dead man's switch is trigge
 
 %package bluetooth
 Summary:    Bluetooth device proximity dead man's switch
+Requires:  bluez pybluez
+BuildRequires:  systemd
 
 %description bluetooth
 A dead man's switch implemented with a Bluetooth device's proximity.  Once a pre-
@@ -61,14 +66,14 @@ make install DESTDIR=%{buildroot}
 %files timeout
 %doc README.md
 %defattr(-,root,root,-)
-%{_unitdir}/qubes-app-dms-timeout.service
+/usr/lib/systemd/user/qubes-app-dms-timeout.service
 /usr/libexec/qubes/heartbeat
 /usr/libexec/qubes/qubes-app-dms-timeout.sh
 
 %files bluetooth
 %doc README.md
 %defattr(-,root,root,-)
-%{_unitdir}/qubes-app-dms-bluetooth.service
+/usr/lib/systemd/user/qubes-app-dms-bluetooth.service
 /rw/usrlocal/etc/qubes-dms/bluetooth.conf
 /usr/libexec/qubes/qubes-app-dms-bluetooth.py
 
