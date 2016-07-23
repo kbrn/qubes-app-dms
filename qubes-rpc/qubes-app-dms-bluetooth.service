@@ -1,0 +1,8 @@
+[Unit]
+Description=Dead Man's Switch (Bluetooth device proximity)
+
+[Service]
+ExecStart=/bin/sh -c '/bin/python /usr/libexec/qubes/qubes-app-dms-bluetooth.py'
+
+[Install]
+WantedBy=default.target
