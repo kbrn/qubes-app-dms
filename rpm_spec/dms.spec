@@ -1,3 +1,7 @@
+%global _enable_debug_package 0
+%global debug_package %{nil}
+%global __os_install_post /usr/lib/rpm/brp-compress %{nil}
+
 %define version %(cat version)
 %if 0%{?qubes_builder}
 %define _builddir %(pwd)
