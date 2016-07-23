@@ -69,7 +69,7 @@ make install DESTDIR=%{buildroot}
 %doc README.md
 %defattr(-,root,root,-)
 %{_unitdir}/qubes-app-dms-bluetooth.service
-/usr/local/etc/qubes-dms/bluetooth.conf
+/rw/usrlocal/etc/qubes-dms/bluetooth.conf
 /usr/libexec/qubes/qubes-app-dms-bluetooth.py
 
 %changelog
