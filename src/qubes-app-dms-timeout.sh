@@ -2,7 +2,7 @@
 
 curstate="UNBLANK"
 oldtime=$(date '+%s')
-timeout=7200
+timeout=$(cat /rw/usrlocal/etc/qubes-dms/timeout.conf)
 
 while true
 do
