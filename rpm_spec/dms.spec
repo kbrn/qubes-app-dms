@@ -17,17 +17,17 @@ A simple Qubes RPC endpoint which implements a dead man's switch by responding t
 triggers by locking the screen, erasing disk crypto keys, wiping main memory, and
 rebooting.
 
-%package qubes-app-dms-timeout
+%package timeout
 Summary:    Lock screen timeout dead man's switch
 
-%description qubes-app-dms-timeout
+%description timeout
 A simple dead man's switch implemented with a lock screen timeout: if the system lock
 screen is active longer than a certain duration, the dead man's switch is triggered.
 
-%package qubes-app-dms-bluetooth
+%package bluetooth
 Summary:    Bluetooth device proximity dead man's switch
 
-%description qubes-app-dms-bluetooth
+%description bluetooth
 A dead man's switch implemented with a Bluetooth device's proximity.  Once a pre-
 configured Bluetooth device becomes visible, regular Bluetooth discovery ensures
 that device remains nearby.  If the device disappears for a specified number of
@@ -59,7 +59,7 @@ make install DESTDIR=%{buildroot}
 #%attr(0664,root,qubes) %config(noreplace) /etc/qubes-rpc/policy/qubes.InputMouse
 #%attr(0664,root,qubes) %config(noreplace) /etc/qubes-rpc/policy/qubes.InputKeyboard
 
-%files qubes-app-dms-timeout
+%files timeout
 %doc README.md
 %defattr(-,root,root,-)
 #/usr/bin/input-proxy-sender
@@ -70,7 +70,7 @@ make install DESTDIR=%{buildroot}
 #%{_unitdir}/qubes-input-sender-keyboard@.service
 #%{_unitdir}/qubes-input-sender-keyboard-mouse@.service
 
-%files qubes-app-dms-bluetooth
+%files bluetooth
 %doc README.md
 %defattr(-,root,root,-)
 #/usr/bin/input-proxy-sender
