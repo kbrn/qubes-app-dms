@@ -6,3 +6,6 @@ CFLAGS += -Wno-missing-braces -Wno-missing-field-initializers
 all: mem-wiper
 
 mem-wiper: mem-wiper.o
+
+clean:
+	rm -f *.o mem-wiper
