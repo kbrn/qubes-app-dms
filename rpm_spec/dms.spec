@@ -49,15 +49,10 @@ make install DESTDIR=%{buildroot}
 %files
 %doc README.md
 %defattr(-,root,root,-)
-#/usr/bin/input-proxy-receiver
-#/etc/qubes-rpc/qubes.InputMouse
-#/etc/qubes-rpc/qubes.InputKeyboard
-#/lib/udev/rules.d/90-qubes-uinput.rules
-#/lib/modules-load.d/qubes-uinput.conf
-#%{python_sitelib}/qubesinputproxy-*.egg-info/*
-#%{python_sitelib}/qubesinputproxy
-#%attr(0664,root,qubes) %config(noreplace) /etc/qubes-rpc/policy/qubes.InputMouse
-#%attr(0664,root,qubes) %config(noreplace) /etc/qubes-rpc/policy/qubes.InputKeyboard
+/usr/libexec/qubes/dom0-dms-activate
+/usr/libexec/qubes/mem-wiper
+/etc/qubes-rpc/qubes.DeadMansSwitch
+%attr(0664,root,qubes) %config(noreplace) /etc/qubes-rpc/policy/qubes.DeadMansSwitch
 
 %files timeout
 %doc README.md
