@@ -1,8 +1,8 @@
 [Unit]
-Description=Dead Man's Switch (lock screen timer)
+Description=Dead Man's Switch (lock screen timeout)
 
 [Service]
-ExecStart=/usr/libexec/qubes/qubes-app-dms-timer.sh
+ExecStart=/usr/libexec/qubes/qubes-app-dms-timeout.sh
 
 [Install]
 WantedBy=default.target
