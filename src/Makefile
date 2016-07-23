@@ -12,6 +12,7 @@ install:
 	install -d $(DESTDIR)/usr/libexec/qubes
 	install mem-wiper $(DESTDIR)/usr/libexec/qubes/mem-wiper
 	install heartbeat $(DESTDIR)/usr/libexec/qubes/heartbeat
+	install qubes-app-dms-timeout.sh $(DESTDIR)/usr/libexec/qubes/qubes-app-dms-timeout.sh
 	install dom0-dms-activate $(DESTDIR)/usr/libexec/qubes/dom0-dms-activate
 
 clean:

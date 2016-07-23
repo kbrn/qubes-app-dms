@@ -2,6 +2,7 @@
 
 curstate="UNBLANK"
 oldtime=$(date '+%s')
+timeout=7200
 
 while true
 do
@@ -22,7 +23,7 @@ do
     then
             curtime=$(date '+%s')
             timediff=$(($curtime - $oldtime))
-            if [ $timediff -gt 7200 ]
+            if [ $timediff -gt $timeout ]
             then
                 echo 1 | sudo /usr/libexec/qubes/dom0-dms-activate
             fi
