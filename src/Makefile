@@ -16,6 +16,7 @@ install:
 	install qubes-app-dms-timeout.sh $(DESTDIR)/usr/libexec/qubes/qubes-app-dms-timeout.sh
 	install qubes-app-dms-bluetooth.py $(DESTDIR)/usr/libexec/qubes/qubes-app-dms-bluetooth.py
 	install bluetooth.conf $(DESTDIR)/rw/usrlocal/etc/qubes-dms/bluetooth.conf
+	install timeout.conf $(DESTDIR)/rw/usrlocal/etc/qubes-dms/timeout.conf
 	install dom0-dms-activate $(DESTDIR)/usr/libexec/qubes/dom0-dms-activate
 
 clean:

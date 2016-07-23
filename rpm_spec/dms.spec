@@ -68,6 +68,7 @@ make install DESTDIR=%{buildroot}
 %defattr(-,root,qubes,-)
 /usr/lib/systemd/user/qubes-app-dms-timeout.service
 /usr/libexec/qubes/heartbeat
+%attr(0664,root,qubes) %config(noreplace) /rw/usrlocal/etc/qubes-dms/timeout.conf
 %attr(0774,root,qubes) /usr/libexec/qubes/qubes-app-dms-timeout.sh
 
 %files bluetooth
