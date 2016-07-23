@@ -1,0 +1,68 @@
+#!/bin/bash
+read -n 1 input
+
+if [ "$(whoami)" != "root" ]
+then
+	echo "Cannot run as anything but root" >/tmp/dmslog
+	exit 1
+fi
+
+if [ "$input" == "1" ]
+then
+	cp /usr/libexec/qubes/mem-wiper /tmp/
+	cp /usr/bin/echo /tmp/
+	#Ensure these programs will be loaded in memory before luksSuspend
+
+	/usr/sbin/swapoff -a
+	#Disable swap. I personally think you're insane if you're concerned 
+	#about memory leaks yet still enable swapping... This should not be
+	#needed.
+
+	/tmp/echo "1" >/proc/sys/kernel/sysrq
+	#Enable sysrq magic
+
+	/tmp/echo "1" >/proc/sys/kernel/panic
+	/tmp/echo "2" >/proc/sys/vm/panic_on_oom
+	#Initiate kernel panic when wiper is finished.  Once dom0 kexec is
+	#added, this will automatically trigger a more thorough overwrite.
+	#Until then, it will just reboot the machine (where the BIOS
+	#diagnostics might do its own memory erasure).
+
+	for username in $(ls /home/*)
+	do
+		export DISPLAY=:0.0
+		su -c "/usr/bin/xscreensaver-command -lock" $username
+	done
+	#Lock screen for all users
+
+	/usr/bin/qvm-shutdown --force --wait --all 
+	#Try to gracefully shutdown any running VMs, but kill after a timeout
+
+	killall qubes-manager
+	killall qmemman_daemon.py
+	killall Terminal
+	sleep 1
+	killall -9 qubes-manager
+	killall -9 Terminal
+	killall -9 qmemman_daemon.py
+	#Kill apps that may have sensitive data; force if necessary
+
+	/usr/bin/sync
+	for dev in $(ls /dev/mapper/*)
+	do
+	    devname=$(echo "$dev" | awk -F/ '{print $NF}')
+	    /sbin/cryptsetup luksSuspend "$devname"
+	done
+	#Sync disks and wipe all disk crypto keys
+
+	/tmp/mem-wiper
+	#Wipe memory as best we can
+	#TODO: kexec -l our memory-scrubbing crash kernel here.
+
+	/tmp/echo "b" >/proc/sysrq-trigger
+	#Trigger an immediate reboot, hopefully into BIOS memtest diagnostics.
+	#Note that there are two failure modes for wiper: (1) malloc failure,
+	#and (2) OOM-killed.  We handle the first case here.  The second case
+	#should result in a panic, which we previously configured to cause a 
+	#reboot, too.
+fi
