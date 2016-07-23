@@ -58,24 +58,24 @@ make install DESTDIR=%{buildroot}
 %files
 %doc README.md
 %defattr(-,root,root,-)
-/usr/libexec/qubes/dom0-dms-activate
-/usr/libexec/qubes/mem-wiper
+%attr(0774,root,qubes) /usr/libexec/qubes/dom0-dms-activate
+%attr(0774,root,qubes) /usr/libexec/qubes/mem-wiper
 /etc/qubes-rpc/qubes.DeadMansSwitch
 %attr(0664,root,qubes) %config(noreplace) /etc/qubes-rpc/policy/qubes.DeadMansSwitch
 
 %files timeout
 %doc README.md
-%defattr(-,root,root,-)
+%defattr(-,root,qubes,-)
 /usr/lib/systemd/user/qubes-app-dms-timeout.service
 /usr/libexec/qubes/heartbeat
-/usr/libexec/qubes/qubes-app-dms-timeout.sh
+%attr(0774,root,qubes) /usr/libexec/qubes/qubes-app-dms-timeout.sh
 
 %files bluetooth
 %doc README.md
-%defattr(-,root,root,-)
+%defattr(-,root,qubes,-)
 /usr/lib/systemd/user/qubes-app-dms-bluetooth.service
-/rw/usrlocal/etc/qubes-dms/bluetooth.conf
-/usr/libexec/qubes/qubes-app-dms-bluetooth.py
+%attr(0664,root,qubes) %config(noreplace) /rw/usrlocal/etc/qubes-dms/bluetooth.conf
+%attr(0774,root,qubes) /usr/libexec/qubes/qubes-app-dms-bluetooth.py
 
 %changelog
 
