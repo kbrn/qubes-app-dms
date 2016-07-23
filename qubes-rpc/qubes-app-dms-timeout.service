@@ -1,0 +1,8 @@
+[Unit]
+Description=Dead Man's Switch (lock screen timer)
+
+[Service]
+ExecStart=/usr/libexec/qubes/qubes-app-dms-timer.sh
+
+[Install]
+WantedBy=default.target
