@@ -11,7 +11,7 @@ This package, to be installed in Dom0, provides the RPC service to respond to a 
 
 qubes-app-dms-timeout
 ----
-This package, to be installed in Dom0, implements a timeout-based dead man's switch: if the lock screen is enabled for a certain duration (default: 2h), the dead man's switch is triggered.
+This package, to be installed in Dom0, implements a timeout-based dead man's switch: if the lock screen is enabled for a certain duration (default 2h, configurable in `/rw/usrlocal/etc/qubes-dms/timeout.conf`), the dead man's switch is triggered.
 
 qubes-app-dms-bluetooth
 ----
