@@ -46,6 +46,7 @@ make install DESTDIR=%{buildroot}
 
 %package timeout
 Summary:    Lock screen timeout dead man's switch
+Requires:   qubes-app-dms
 BuildRequires:  systemd
 
 %description timeout
