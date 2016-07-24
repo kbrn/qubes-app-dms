@@ -23,25 +23,6 @@ A simple Qubes RPC endpoint which implements a dead man's switch by responding t
 triggers by locking the screen, erasing disk crypto keys, wiping main memory, and
 rebooting.
 
-%package timeout
-Summary:    Lock screen timeout dead man's switch
-BuildRequires:  systemd
-
-%description timeout
-A simple dead man's switch implemented with a lock screen timeout: if the system lock
-screen is active longer than a certain duration, the dead man's switch is triggered.
-
-%package bluetooth
-Summary:    Bluetooth device proximity dead man's switch
-Requires:  bluez pybluez
-BuildRequires:  systemd
-
-%description bluetooth
-A dead man's switch implemented with a Bluetooth device's proximity.  Once a pre-
-configured Bluetooth device becomes visible, regular Bluetooth discovery ensures
-that device remains nearby.  If the device disappears for a specified number of
-probes, the dead man's switch is triggered.
-
 %prep
 # we operate on the current directory, so no need to unpack anything
 # symlink is to generate useful debuginfo packages
@@ -63,6 +44,14 @@ make install DESTDIR=%{buildroot}
 /etc/qubes-rpc/qubes.DeadMansSwitch
 %attr(0664,root,qubes) %config(noreplace) /etc/qubes-rpc/policy/qubes.DeadMansSwitch
 
+%package timeout
+Summary:    Lock screen timeout dead man's switch
+BuildRequires:  systemd
+
+%description timeout
+A simple dead man's switch implemented with a lock screen timeout: if the system lock
+screen is active longer than a certain duration, the dead man's switch is triggered.
+
 %files timeout
 %doc README.md
 %defattr(-,root,qubes,-)
@@ -70,6 +59,18 @@ make install DESTDIR=%{buildroot}
 /usr/libexec/qubes/heartbeat
 %attr(0664,root,qubes) %config(noreplace) /rw/usrlocal/etc/qubes-dms/timeout.conf
 %attr(0774,root,qubes) /usr/libexec/qubes/qubes-app-dms-timeout.sh
+
+%package bluetooth
+Summary:    Bluetooth device proximity dead man's switch
+Requires:  bluez pybluez
+BuildRequires:  systemd
+
+%description bluetooth
+A dead man's switch implemented with a Bluetooth device's proximity.  Once a pre-
+configured Bluetooth device becomes visible, regular Bluetooth discovery ensures
+that device remains nearby.  If the device disappears for a specified number of
+probes, the dead man's switch is triggered.
+
 
 %files bluetooth
 %doc README.md
