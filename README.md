@@ -23,3 +23,10 @@ Once installed in the appropriate TemplateVM, the specific VM which will run the
 - Ensure the Bluetooth transceiver is assigned to the VM
 - Insert the appropriate Bluetooth device MAC and (optionally) change parameters in `/usr/local/etc/qubes-dms/bluetooth.conf`
 - Enable the service: `[user@sys-usb]$ systemctl --user enable qubes-app-dms-bluetooth`
+
+
+Final note
+====
+Note that the dead man's switch RPC service's permissions are set to "ask" by default.  You should trigger the dead man's switch to:
+- Verify that it works as intended
+- Click 'Yes to all' on the permissions prompt so future requests are whitelisted
