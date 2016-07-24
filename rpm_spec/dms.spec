@@ -58,7 +58,7 @@ screen is active longer than a certain duration, the dead man's switch is trigge
 %defattr(-,root,qubes,-)
 /usr/lib/systemd/user/qubes-app-dms-timeout.service
 /usr/libexec/qubes/heartbeat
-%attr(0664,root,qubes) %config(noreplace) /rw/usrlocal/etc/qubes-dms/timeout.conf
+%attr(0664,root,qubes) %config(noreplace) /usr/local/etc/qubes-dms/timeout.conf
 %attr(0774,root,qubes) /usr/libexec/qubes/qubes-app-dms-timeout.sh
 
 %package bluetooth
@@ -77,7 +77,7 @@ probes, the dead man's switch is triggered.
 %doc README.md
 %defattr(-,root,qubes,-)
 /usr/lib/systemd/user/qubes-app-dms-bluetooth.service
-%attr(0664,root,qubes) %config(noreplace) /rw/usrlocal/etc/qubes-dms/bluetooth.conf
+%attr(0664,root,qubes) %config(noreplace) /usr/local/etc/qubes-dms/bluetooth.conf
 %attr(0774,root,qubes) /usr/libexec/qubes/qubes-app-dms-bluetooth.py
 
 %changelog
