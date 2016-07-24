@@ -21,7 +21,13 @@ This package, to be installed in the TemplateVM of the AppVM/NetVM/USBVM you wis
 
 Once installed in the appropriate TemplateVM, the specific VM which will run the monitor should be configured:
 - Ensure the Bluetooth transceiver is assigned to the VM
-- Insert the appropriate Bluetooth device MAC and (optionally) change parameters in `/usr/local/etc/qubes-dms/bluetooth.conf`
+- Insert the appropriate Bluetooth device MAC and (optionally) change parameters in `/usr/local/etc/qubes-dms/bluetooth.conf`.  If this VM existed already, then you must manually create this file.  By default, the file contents are
+```
+[bluetooth]
+target_address = 00:00:00:00:00:00
+scan_interval = 10
+graceful_fails = 2
+```
 - Enable the service: `[user@sys-usb]$ systemctl --user enable qubes-app-dms-bluetooth`
 
 
